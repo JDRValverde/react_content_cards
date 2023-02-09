@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Cards from "./components/Cards";
+import Contact from "./components/Contact";
+import data from "./data"
 
-function App() {
+
+// App component that renders the Navbar, Hero, Cards, and Contact components
+export default function App() {
+
+  // Map over the data array to create an array of Card components
+  const cardElements = data.map(card => {
+    return <Cards
+      key={card.id}  // Provide a unique key for each card
+      card={card}  // Pass the card data as a prop
+    //{...card}
+    />
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Render the components */}
+      <Navbar />
+      <Hero />
+      <section className="cards-list">
+        {cardElements}
+      </section>
+      <Contact />
     </div>
-  );
+  )
 }
-
-export default App;
